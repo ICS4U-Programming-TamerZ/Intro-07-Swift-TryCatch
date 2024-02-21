@@ -11,42 +11,34 @@
 // Imports Module
 import Foundation
 
-// Asks for radius
+// Print statement asking the user to enter the radius of a sphere
 print("Enter a radius of a sphere (unit), (u^1)");
 
-do{
-    // Reads new line
-    if let radius = readLine(){
-        // Tries casting radius to double and assigning to a new variable
-        if let radiusDouble = (Double)(radius){
-        // Checks to see if radius is greater than 0
-        if (radiusDouble > 0){
-            // Assigns fraction to a variable (magic number)
-            let fraction = (4.0/3.0);
-            // Assigns pi to a variable
+// Do block to handle user input and perform calculations
+do {
+    // Prompt user for input, and attempt to convert it to a Double
+    if let radius = readLine(), let radiusDouble = Double(radius) {
+        // Checking if the entered radius is greater than 0
+        if radiusDouble > 0 {
+            // Assigning the value of the fraction 4/3 to a constant
+            let fraction = (4.0 / 3.0);
+            // Assigning the value of pi to a constant
             let pi = Double.pi;
-            // Calculates Volume
+            // Calculating the volume of the sphere using the formula (4/3) * pi * radius^3
             let volume = fraction * pi * pow(radiusDouble, 3);
-            // Rounds Volume
+            // Rounding the calculated volume to three decimal places
             let volumeRounded = round(volume * 1000) / 1000;
-            // Displays Volume
-            print("Your Volume is " + String(volumeRounded) + " (units cubed), (u^3)");
-        }
-        // If user did not enter a positive number
-        else{
+            // Printing the calculated volume along with appropriate units
+            print("Your Volume is \(volumeRounded) (units cubed), (u^3)");
+        } else {
+            // If the entered radius is not greater than 0, print an error message
             print("Must be a positive number");
         }
-        }
-        // If user input a string or input nothing
-        else{
-        print("Must be a number");
-        }
+    } else {
+        // If the input cannot be converted to a Double, print an error message
+        print("Invalid input. Please enter a valid number.");
     }
-    // Not really needed but is a placeholder for any other bugs
-    else{
-    print("Please input something");
-    }
-}
-catch{
-    print("Error");
+} catch {
+    // Catching any other errors that might occur during the execution
+    print("An error occurred while processing the input.");
 }
